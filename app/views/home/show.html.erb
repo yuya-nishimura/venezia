@@ -1,0 +1,10 @@
+<% @movies.each do |item| %>
+  <h1><%= item["title"] %></h1>
+    <div float="left">
+      <%= image_tag "https://image.tmdb.org/t/p/w200#{item["poster_path"]}" %>
+    </div>
+    <div float="left">
+      <%= "概要：#{item["overview"]}" %>
+    </div>
+  -----------------------------------
+<% end %>
