@@ -1,10 +1,15 @@
-<% @movies.each do |item| %>
-  <h1><%= item["title"] %></h1>
-    <div float="left">
-      <%= image_tag "https://image.tmdb.org/t/p/w200#{item["poster_path"]}" %>
-    </div>
-    <div float="left">
-      <%= "概要：#{item["overview"]}" %>
-    </div>
-  -----------------------------------
+<% if @movies.blank? %>
+  <h2>検索にヒットする作品はありませんでした。</h2>
+  <% else %>
+  <% @movies.each do |item| %>
+    <h1><%= item["title"] %></h1>
+      <div float="left">
+        <%= image_tag "https://image.tmdb.org/t/p/w200#{item["poster_path"]}" %>
+      </div>
+      <div float="left">
+        <p><%= "公開日：#{item["release_date"]}" %></p>
+        <p><%= "概要：#{item["overview"]}" %></p>
+      </div>
+    -----------------------------------
+  <% end %>
 <% end %>
