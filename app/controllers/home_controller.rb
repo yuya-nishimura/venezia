@@ -5,8 +5,9 @@ class HomeController < ApplicationController
   end
 
   def search
+    api_key = ENV["TMDB_API_KEY"]
     keyword = set_params[:search]
-    url = URI.encode "https://api.themoviedb.org/3/search/movie?api_key=b80d7b2dcc71906bb510ce9d4b43b879&query=#{keyword}&language=ja-JP"
+    url = URI.encode "https://api.themoviedb.org/3/search/movie?api_key=#{api_key}&query=#{keyword}&language=ja-JP"
     json = JSON.load(open(url))
 
     @movies = json["results"]
