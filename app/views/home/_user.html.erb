@@ -7,6 +7,12 @@
   </ul>
   <p>
     <%= @user.name %>さんのリスト
+    <%= form_for :list, url: lists_path do |f| %>
+      <%= f.label '新規リスト作成' %>
+      <%= f.text_field :name, class: 'form-control', placeholder: '名前' %>
+      <%= f.text_field :description, class: 'form-control', placeholder: '概要' %>
+      <%= f.submit '作成', class: "btn btn-primary" %>
+    <% end %>
   </p>
   <ul>
     <% @user.lists.each do |item| %>
