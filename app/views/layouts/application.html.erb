@@ -12,13 +12,15 @@
   <body>
     <header>
       <nav>
+        <strong><i><%= link_to 'VENEZIA', root_path %></i></strong>
         <% if user_signed_in? %>
-        <strong><%= link_to current_user.username, pages_show_path %></strong>
-        <%= link_to 'プロフィール変更', edit_user_registration_path %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <strong><%= image_tag "#{current_user.get_original_image}" %></strong>
+        <strong><%= image_tag "#{current_user.get_bigger_image}" %></strong>
+        <strong><%= image_tag "#{current_user.image}" %></strong>
+        <strong><%= link_to current_user.name, "#" %></strong>
+        <%= link_to 'ログアウト', logout_path, method: :delete %>
       <% else %>
-        <%= link_to 'サインアップ', new_user_registration_path %>
-        <%= link_to 'ログイン', new_user_session_path %>
+        <%= link_to 'ログイン(Twitter経由)', user_twitter_omniauth_authorize_path %>
         <% end %>
       </nav>
     </header>
