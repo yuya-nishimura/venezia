@@ -14,9 +14,7 @@
       <nav>
         <strong><i><%= link_to 'VENEZIA', root_path %></i></strong>
         <% if user_signed_in? %>
-        <strong><%= image_tag "#{current_user.get_original_image}" %></strong>
         <strong><%= image_tag "#{current_user.get_bigger_image}" %></strong>
-        <strong><%= image_tag "#{current_user.image}" %></strong>
         <strong><%= link_to current_user.name, "#" %></strong>
         <%= link_to 'ログアウト', logout_path, method: :delete %>
       <% else %>
@@ -28,5 +26,9 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+
+    <footer>
+      <div><i>by <%= link_to 'yusperekko', 'https://twitter.com/yusperekko' %></i></div>
+    </footer>
   </body>
 </html>

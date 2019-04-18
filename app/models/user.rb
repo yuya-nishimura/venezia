@@ -3,6 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :omniauthable, omniauth_providers: [:twitter]
 
+  # ユーザーは複数のリストと映画を持つ
+  has_many :lists, dependent: :destroy
+  has_many :movies, through: :lists, dependent: :destroy
+
   # Twitter認証で受け取った情報からユーザーを検索または作成する
   def self.from_omniauth(auth)
     find_or_create_by(uid: auth[:uid]) do |user|
