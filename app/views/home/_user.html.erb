@@ -1,0 +1,16 @@
+<div class>
+  <%= image_tag "#{@user.get_bigger_image}" %>
+  <%= @user.name %>
+  <ul>
+    <li>リスト数: <%= @user.lists.size %></li>
+    <li>観た映画: <%= @user.movies.size %></li>
+  </ul>
+  <p>
+    <%= @user.name %>さんのリスト
+  </p>
+  <ul>
+    <% @user.lists.each do |item| %>
+      <li><%= link_to item.name, item %> (<%= item.movies.size %>)</li>
+    <% end %>
+  </ul>
+</div>

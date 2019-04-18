@@ -1,11 +1,6 @@
 <% if user_signed_in? %>
-  <h1>映画を検索</h1>
-    <%= form_for :home do |f| %>
-      <%= f.label :search %>
-      <%= f.text_field :search, class: 'form-control' %>
-    <% end %>
+  <%= render 'user' %>
 <% else %>
-  <h1>ここは背徳の街</h1>
-  <p>※Twitterアカウントでユーザー登録して下さい<p>
+  <%= render 'top' %>
 <% end %>
 

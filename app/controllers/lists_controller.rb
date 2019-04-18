@@ -3,6 +3,7 @@ class ListsController < ApplicationController
   end
 
   def show
+    @list = current_user.lists.find(params[:id])
   end
 
   def edit

@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   require 'open-uri'
 
   def index
+    @user = current_user
   end
 
   def search

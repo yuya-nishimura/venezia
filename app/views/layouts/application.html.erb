@@ -14,9 +14,17 @@
       <nav>
         <strong><i><%= link_to 'VENEZIA', root_path %></i></strong>
         <% if user_signed_in? %>
-        <strong><%= image_tag "#{current_user.get_bigger_image}" %></strong>
-        <strong><%= link_to current_user.name, "#" %></strong>
-        <%= link_to 'ログアウト', logout_path, method: :delete %>
+        <div class="search">
+          <%= form_for :home do |f| %>
+            <%= f.label :search %>
+            <%= f.text_field :search, class: 'form-control', placeholder: 'タイトルまたは公開年月' %>
+          <% end %>
+        </div>
+        <div class="profile">
+          <strong><%= image_tag "#{current_user.get_bigger_image}" %></strong>
+          <strong><%= link_to current_user.name, "#" %></strong>
+          <%= link_to 'ログアウト', logout_path, method: :delete %>
+        </div>
       <% else %>
         <%= link_to 'ログイン(Twitter経由)', user_twitter_omniauth_authorize_path %>
         <% end %>
