@@ -31,13 +31,13 @@ class MoviesController < ApplicationController
 
     @movie.destroy
     flash[:success] = "\"#{@movie.title}\"がリスト\"#{@selected_list.name}\"から削除されました"
-    redirect_to root_url
+    redirect_to @selected_list
   end
 
   private
 
   def movie_params
-    params.require(:movie).permit(:title)
+    params.require(:movie).permit(:title, :description, :release_date, :poster)
   end
 
 end

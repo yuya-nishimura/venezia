@@ -3,7 +3,14 @@
 <ul>
   <% @list.movies.each do |movie| %>
     <li>
-      <%= movie.title %> | <%= link_to '削除', movie, method: :delete %>
+      <div>
+        <b><%= movie.title %></b> | <%= movie.release_date %> | <%= link_to '削除', movie, method: :delete %>
+        <div>
+          <%= image_tag movie.resized_poster(92) %>
+        </div>
+        <div>
+          <font size="1"><%= movie.description %></font>
+        </div>
     </li>
   <% end %>
-</ul>
+<ul>

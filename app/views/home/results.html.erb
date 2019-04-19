@@ -2,20 +2,28 @@
   <h2>検索にヒットする作品はありませんでした。</h2>
   <% else %>
   <% @results.each do |result| %>
-    <h2><%= result["title"] %></h2>
+  <% title = result["title"] %>
+  <% description = result["overview"] %>
+  <% release_date = result["release_date"] %>
+  <% poster = result["poster_path"] %>
+
+    <h2><%= title %></h2>
 
     <%= form_for :movie, url: movies_path do |f| %>
       <%= f.collection_select :list_id, @lists, :id, :name %>
-      <%= f.hidden_field :title, value: result["title"] %>
+      <%= f.hidden_field :title, value: title %>
+      <%= f.hidden_field :description, value: description %>
+      <%= f.hidden_field :release_date, value: release_date %>
+      <%= f.hidden_field :poster, value: poster %>
       <%= f.submit '登録', class: "btn btn-primary" %>
     <% end %>
 
       <div>
-        <%= image_tag "https://image.tmdb.org/t/p/w200#{result["poster_path"]}" %>
+        <%= image_tag "https://image.tmdb.org/t/p/w200#{poster}" %>
       </div>
       <div>
-        <p><%= "公開日：#{result["release_date"]}" %></p>
-        <p><%= "概要：#{result["overview"]}" %></p>
+        <p><%= "公開日：#{release_date}" %></p>
+        <h4><i><%= "概要：#{description}" %></i></h4>
       </div>
     -----------------------------------
   <% end %>
