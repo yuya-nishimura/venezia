@@ -25,6 +25,10 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    flash[:success] = "リストが削除されました"
+    redirect_to root_url
   end
 
   private

@@ -1,14 +1,20 @@
 <% if @movies.blank? %>
   <h2>検索にヒットする作品はありませんでした。</h2>
   <% else %>
-  <% @movies.each do |item| %>
-    <h1><%= item["title"] %></h1>
-      <div float="left">
-        <%= image_tag "https://image.tmdb.org/t/p/w200#{item["poster_path"]}" %>
+  <% @movies.each do |movie| %>
+    <h1><%= movie["title"] %></h1>
+
+    <%= form_for :movie, url: movies_path do |f| %>
+      <%= f.collection_select(:list_id, @lists, :id, :name) %>
+      <%= f.submit '登録', class: "btn btn-primary" %>
+    <% end %>
+
+      <div>
+        <%= image_tag "https://image.tmdb.org/t/p/w200#{movie["poster_path"]}" %>
       </div>
-      <div float="left">
-        <p><%= "公開日：#{item["release_date"]}" %></p>
-        <p><%= "概要：#{item["overview"]}" %></p>
+      <div>
+        <p><%= "公開日：#{movie["release_date"]}" %></p>
+        <p><%= "概要：#{movie["overview"]}" %></p>
       </div>
     -----------------------------------
   <% end %>

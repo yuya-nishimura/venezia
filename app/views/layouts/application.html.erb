@@ -31,10 +31,13 @@
       </nav>
     </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+
     <%= yield %>
 
+    <%= debug(params) %>
     <footer>
       <div><i>by <%= link_to 'yusperekko', 'https://twitter.com/yusperekko' %></i></div>
     </footer>

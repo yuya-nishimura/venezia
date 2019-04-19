@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   require 'open-uri'
+  before_action :set_user_and_lists
 
   def index
-    @user = current_user
   end
 
   def search
@@ -16,6 +16,13 @@ class HomeController < ApplicationController
   end
 
   private
+
+  def set_user_and_lists
+    if user_signed_in?
+      @user = current_user
+      @lists = @user.lists
+    end
+  end
 
   def set_params
     params.require(:home).permit(:search)

@@ -14,9 +14,9 @@
       <%= f.submit '作成', class: "btn btn-primary" %>
     <% end %>
   </p>
-  <ul>
-    <% @user.lists.each do |item| %>
-      <li><%= link_to item.name, item %> (<%= item.movies.size %>)</li>
-    <% end %>
-  </ul>
+
+<ul>
+  <%= render @lists %>
+</ul>
+
 </div>
