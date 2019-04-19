@@ -11,8 +11,8 @@ class HomeController < ApplicationController
     url = URI.encode "https://api.themoviedb.org/3/search/movie?api_key=#{api_key}&query=#{keyword}&language=ja-JP"
     json = JSON.load(open(url))
 
-    @movies = json["results"]
-    render 'show'
+    @results = json["results"]
+    render 'results'
   end
 
   private

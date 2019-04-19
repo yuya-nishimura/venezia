@@ -15,7 +15,7 @@
         <strong><i><%= link_to 'VENEZIA', root_path %></i></strong>
         <% if user_signed_in? %>
         <div class="search">
-          <%= form_for :home do |f| %>
+          <%= form_for :home, url: root_path do |f| %>
             <%= f.label :search %>
             <%= f.text_field :search, class: 'form-control', placeholder: 'タイトルまたは公開年月' %>
           <% end %>
