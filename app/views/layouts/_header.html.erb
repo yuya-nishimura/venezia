@@ -1,0 +1,40 @@
+<header class="navbar navbar-light py-0 mb-3" style="background-color: purple;">
+  <%= link_to 'VENEZIA', root_path, class: 'navbar-brand p-0 m-0 h1' %>
+  <ul class="navbar nav">
+    <% if user_signed_in? %>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= image_tag "#{@user.image}", style: "border-radius: 50%;" %>
+      </a>
+      <div class="dropdown-menu text-muted p-2" aria-labelledby="navbarDropdownMenuLink" style="width: 18em;">
+        <div class="container mb-2">
+          <div class="row">
+            <div class="col-4"><%= image_tag "#{@user.get_bigger_image}" %></div>
+            <div class="col-8"><strong><%= @user.name %></strong></div>
+          </div>
+        </div>
+        <div class="container">
+          <ul>
+            <li>リスト数: <%= @user.lists.size %></li>
+            <li>登録作品数: <%= @user.movies.size %></li>
+          </ul>
+        <div class="dropdown-divider"></div>
+        <%= link_to 'ログアウト', logout_path, method: :delete, class: 'btn btn-danger w-100' %>
+        </div>
+      </div>
+      </li>
+      <li class="nav-item">
+      <%= form_for :home, url: root_path, html: { class: 'form-inline' } do |f| %>
+        <%= f.text_field :search, class: 'fa mr-1 pl-2 py-2', style: 'border-radius: 0.25rem; width: 21em;', placeholder: "\uF002 タイトルまたは公開年月" %>
+        <%= f.submit '検索', class: 'btn btn-warning' %>
+      <% end %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to user_twitter_omniauth_authorize_path, class:'btn btn-primary' do %>
+          <i class="fab fa-twitter mr-1"></i>Twitterでログイン
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</header>

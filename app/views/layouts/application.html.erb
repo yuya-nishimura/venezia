@@ -10,34 +10,14 @@
   </head>
 
   <body>
-    <header>
-      <nav>
-        <strong><i><%= link_to 'VENEZIA', root_path %></i></strong>
-        <% if user_signed_in? %>
-        <div class="search">
-          <%= form_for :home, url: root_path do |f| %>
-            <%= f.label :search %>
-            <%= f.text_field :search, class: 'form-control', placeholder: 'タイトルまたは公開年月' %>
-          <% end %>
-        </div>
-        <div class="profile">
-          <strong><%= image_tag "#{current_user.get_bigger_image}" %></strong>
-          <strong><%= link_to current_user.name, "#" %></strong>
-          <%= link_to 'ログアウト', logout_path, method: :delete %>
-        </div>
-      <% else %>
-        <%= link_to 'ログイン(Twitter経由)', user_twitter_omniauth_authorize_path %>
-        <% end %>
-      </nav>
-    </header>
+    <%= render 'layouts/header' %>
 
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
 
     <%= yield %>
 
-    <%= debug(params) %>
     <footer>
       <div><i>by <%= link_to 'yusperekko', 'https://twitter.com/yusperekko' %></i></div>
     </footer>
