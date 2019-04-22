@@ -7,4 +7,8 @@ class List < ApplicationRecord
   belongs_to :user
   has_many :movies, dependent: :destroy
 
+  # リストのサムネイルを表示する
+  def thumbnail
+    movies.first ? movies.first.resized_poster(45) : 'noimage.png'
+  end
 end

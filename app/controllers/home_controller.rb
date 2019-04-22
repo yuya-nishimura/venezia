@@ -8,11 +8,16 @@ class HomeController < ApplicationController
   def search
     api_key = ENV["TMDB_API_KEY"]
     keyword = set_params[:search]
-    url = URI.encode "https://api.themoviedb.org/3/search/movie?api_key=#{api_key}&query=#{keyword}&language=ja-JP"
-    json = JSON.load(open(url))
 
-    @results = json["results"]
-    render 'results'
+    if !keyword.blank?
+      url = URI.encode "https://api.themoviedb.org/3/search/movie?api_key=#{api_key}&query=#{keyword}&language=ja-JP"
+      json = JSON.load(open(url))
+      @results = json["results"]
+      render 'results'
+    else
+      flash[:danger] = '検索ワードを入力して下さい'
+      redirect_to root_url
+    end
   end
 
   private

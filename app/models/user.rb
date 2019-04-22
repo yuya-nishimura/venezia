@@ -16,11 +16,18 @@ class User < ApplicationRecord
     end
   end
 
+  # Twitterアイコンを様々なサイズで呼び出す
   def get_bigger_image
     image.gsub(/_normal/, "_bigger")
   end
 
   def get_original_image
     image.gsub(/_normal/, "")
+  end
+
+  # 被りのない映画一覧数を計算する
+  def uniq_movies_size
+    titles = movies.map(&:title)
+    titles.uniq.size
   end
 end

@@ -1,16 +1,26 @@
-<b><%= @list.name %></b>
-<i><%= @list.description %></i>
-<ul>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2><%= @list.name %></h2>
+      <p><%= @list.description %></p>
+    </div>
+  </div>
+
   <% @list.movies.each do |movie| %>
-    <li>
-      <div>
-        <b><%= movie.title %></b> | <%= movie.release_date %> | <%= link_to '削除', movie, method: :delete %>
-        <div>
-          <%= image_tag movie.resized_poster(92) %>
+    <div class="card mb-3 w-100">
+      <div class="row no-gutters">
+        <div class="col-4">
+          <%= image_tag movie.resized_poster(780), class: 'card-img' %>
         </div>
-        <div>
-          <font size="1"><%= movie.description %></font>
+        <div class="col-8">
+          <div class="card-body">
+            <h4 class="card-title"><%= movie.title %></h4>
+            <p class="card-text"><small><i><%= movie.release_date %>　公開</i></small></p>
+            <p class="card-text"><font size="1"><%= movie.description %></font></p>
+            <%= link_to '削除', movie, method: :delete, class: 'btn btn-sm btn-danger' %>
+          </div>
         </div>
-    </li>
+      </div>
+    </div>
   <% end %>
-<ul>
+</div>

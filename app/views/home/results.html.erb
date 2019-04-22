@@ -1,30 +1,35 @@
-<% if @results.blank? %>
-  <h2>検索にヒットする作品はありませんでした。</h2>
+<div class="container">
+  <% if @results.blank? %>
+    <h2>検索にヒットする作品はありませんでした。</h2>
   <% else %>
-  <% @results.each do |result| %>
-  <% title = result["title"] %>
-  <% description = result["overview"] %>
-  <% release_date = result["release_date"] %>
-  <% poster = result["poster_path"] %>
+    <% @results.each do |movie| %>
+      <% title = movie["title"] %>
+      <% description = movie["overview"] %>
+      <% release_date = movie["release_date"] %>
+      <% poster = movie["poster_path"] %>
 
-    <h2><%= title %></h2>
-
-    <%= form_for :movie, url: movies_path do |f| %>
-      <%= f.collection_select :list_id, @lists, :id, :name %>
-      <%= f.hidden_field :title, value: title %>
-      <%= f.hidden_field :description, value: description %>
-      <%= f.hidden_field :release_date, value: release_date %>
-      <%= f.hidden_field :poster, value: poster %>
-      <%= f.submit '登録', class: "btn btn-primary" %>
+      <div class="card mb-3 w-100">
+        <div class="row no-gutters">
+          <div class="col-4">
+            <%= image_tag "https://image.tmdb.org/t/p/w780#{poster}", class: 'card-img' %>
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h4 class="card-title"><%= title %></h4>
+              <p class="card-text"><small><i><%= release_date %>　公開</i></small></p>
+              <p class="card-text"><font size="1"><%= description %></font></p>
+              <%= form_for :movie, url: movies_path do |f| %>
+                <%= f.collection_select :list_id, @lists, :id, :name %>
+                <%= f.hidden_field :title, value: title %>
+                <%= f.hidden_field :description, value: description %>
+                <%= f.hidden_field :release_date, value: release_date %>
+                <%= f.hidden_field :poster, value: poster %>
+                <%= f.submit '登録', class: "btn btn-sm btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-
-      <div>
-        <%= image_tag "https://image.tmdb.org/t/p/w200#{poster}" %>
-      </div>
-      <div>
-        <p><%= "公開日：#{release_date}" %></p>
-        <h4><i><%= "概要：#{description}" %></i></h4>
-      </div>
-    -----------------------------------
   <% end %>
-<% end %>
+</div>
