@@ -15,3 +15,30 @@
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+body {
+  padding-top: 7em;
+  header {
+    height: 5em;
+  }
+  footer {
+    margin-top: 7em;
+  }
+}
+
+#logo {
+  font-size: x-large;
+  font-weight: 600;
+  text-decoration: none;
+  color: ghostwhite;
+}
+
+.thumbnail {
+  width: 64px;
+  height: 64px;
+}
+
+// ドロップダウンメニュー
+.dropdown-menu {
+  width: 18em;
+}

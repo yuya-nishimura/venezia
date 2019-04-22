@@ -1,3 +1,26 @@
-<li>
-  <%= link_to list.name, list %> (<%= list.movies.size %>) | <%= link_to '削除', list, method: :delete %>
-</li>
+<div class="row">
+  <div class="col-12">
+    <ul class="list-unstyled">
+      <li class="media">
+        <div class="media-body">
+          <h5 class="mt-0 mb-1"><%= link_to list.name, list %> (<%= list.movies.size %>)</h5>
+            <%= list.description %>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-toggle btn btn-info mr-2" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            編集
+          </button>
+            <div class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="navbarDropdownMenuLink">
+              <%= form_for list do |f| %>
+                <%= f.text_field :name, placeholder: '名前' %>
+                <%= f.text_field :description, placeholder: '概要' %>
+                <%= f.submit '更新', method: :patch, class: 'btn btn-info' %>
+              <% end %>
+            </div>
+        </div>
+          <%= link_to '削除', list, method: :delete, class: 'btn btn-danger' %>
+      </li>
+    </ul>
+  </div>
+</div>

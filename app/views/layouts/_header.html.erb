@@ -1,12 +1,12 @@
-<header class="navbar navbar-light py-0 mb-3" style="background-color: purple;">
-  <%= link_to 'VENEZIA', root_path, class: 'navbar-brand p-0 m-0 h1' %>
+<header class="navbar fixed-top navbar-light py-0 mb-3" style="background-color: purple;">
+  <%= link_to 'VENEZIA', root_path, class: 'navbar-brand p-0 m-0 h1', id: 'logo' %>
   <ul class="navbar nav">
     <% if user_signed_in? %>
       <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag "#{@user.image}", style: "border-radius: 50%;" %>
       </a>
-      <div class="dropdown-menu text-muted p-2" aria-labelledby="navbarDropdownMenuLink" style="width: 18em;">
+      <div class="dropdown-menu text-muted p-2" aria-labelledby="navbarDropdownMenuLink">
         <div class="container mb-2">
           <div class="row">
             <div class="col-4"><%= image_tag "#{@user.get_bigger_image}" %></div>
