@@ -2,6 +2,8 @@ class ListsController < ApplicationController
 before_action :set_list, except: [:create]
 
   def show
+    # ページネーション用にMovieオブジェクト群を取り出す
+    @movies = @list.movies.page(params[:page]).per(15)
   end
 
   def create

@@ -40,13 +40,9 @@ body {
   width: 100%;
 }
 
-.thumbnail {
-  width: 64px;
-  height: 64px;
-}
-
-card-title {
-  font-weight: 500;
+// ページネーションを少し下げる
+.pagination {
+  padding-top: 2em;
 }
 
 // ドロップダウンメニュー
@@ -62,4 +58,13 @@ card-title {
 // セレクトボックスの高さ
 select {
   height: 2em;
+}
+
+.thumbnail {
+  width: 64px;
+  height: 64px;
+}
+
+card-title {
+  font-weight: 500;
 }

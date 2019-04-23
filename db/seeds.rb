@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+@user = User.first
+@list = @user.lists.find(39)
+
+100.times do |i|
+  @list.movies.create(title: "アベンジャーズ#{i}")
+end
+
