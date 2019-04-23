@@ -1,3 +1,5 @@
+<div class="register-flash"></div>
+
 <div class="container">
   <% if @results.blank? %>
     <h2>検索にヒットする作品はありませんでした。</h2>
@@ -16,9 +18,9 @@
           <div class="col-8">
             <div class="card-body">
               <h4 class="card-title"><%= title %></h4>
-              <p class="card-text"><small><i><%= release_date %>　公開</i></small></p>
+              <span class="card-text"><small><i><%= release_date %>　公開</i></small></span>
               <p class="card-text"><font size="1"><%= description %></font></p>
-              <%= form_for :movie, url: movies_path do |f| %>
+              <%= form_for :movie, url: movies_path, remote: true do |f| %>
                 <%= f.collection_select :list_id, @lists, :id, :name %>
                 <%= f.hidden_field :title, value: title %>
                 <%= f.hidden_field :description, value: description %>

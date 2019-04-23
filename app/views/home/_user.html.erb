@@ -1,9 +1,9 @@
-<div class="container w-100">
-  <div class="row mb-3 bb-1">
+<div class="container">
+  <div class="row mb-3">
     <%= form_for :list, url: lists_path, html: { class: 'form-inline col-12' } do |f| %>
-      <%= f.text_field :name, class: 'mx-1', placeholder: '名前' %>
-      <%= f.text_field :description, class: 'mx-1', placeholder: '概要' %>
-      <%= f.submit '新規リスト作成', class: "btn btn-primary ml-2" %>
+      <%= f.text_field :name, placeholder: '名前' %>
+      <%= f.text_field :description, class: 'ml-1', placeholder: '概要' %>
+      <%= f.submit "\uf067", class: "fa btn btn-primary ml-1" %>
     <% end %>
   </div>
 

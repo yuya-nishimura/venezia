@@ -33,6 +33,13 @@ body {
   color: ghostwhite;
 }
 
+// フラッシュメッセージを固定
+.alert {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+
 .thumbnail {
   width: 64px;
   height: 64px;
@@ -45,4 +52,14 @@ card-title {
 // ドロップダウンメニュー
 .dropdown-menu {
   width: 18em;
+}
+
+//アイコンのみで出来たボタンの下のマージン
+.iconbtn {
+  margin-top: 0.5em;
+}
+
+// セレクトボックスの高さ
+select {
+  height: 2em;
 }

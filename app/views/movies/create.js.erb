@@ -1,0 +1,8 @@
+<% # フラッシュメッセージが入る場所へメッセージを挿入 %>
+$(".register-flash").html('<div class="alert alert-<%= @type %>"><%= @message %></div>');
+
+<% # デフォルトのフェードアウトは既に実行されてしまっているので、改めてフェードアウトをかける %>
+$(document).ready(function() {
+  $('.alert').fadeOut(2500);
+});
+

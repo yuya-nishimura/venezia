@@ -9,8 +9,8 @@
         </div>
 
         <div class="dropdown">
-          <button class="dropdown-toggle btn btn-info mr-2" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            編集
+          <button class="fa dropdown-toggle btn btn-info iconbtn mr-2" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= "\uf044" %>
           </button>
             <div class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="navbarDropdownMenuLink">
               <%= form_for list do |f| %>
@@ -20,7 +20,7 @@
               <% end %>
             </div>
         </div>
-          <%= link_to '削除', list, method: :delete, class: 'btn btn-danger' %>
+          <%= link_to "\uf2ed", list, method: :delete, class: 'far btn btn-danger iconbtn' %>
       </li>
     </ul>
   </div>

@@ -15,7 +15,7 @@
         <div class="col-8">
           <div class="card-body">
             <h4 class="card-title"><%= movie.title %></h4>
-            <p class="card-text"><small><i><%= movie.release_date %>　公開</i></small></p>
+            <span class="card-text"><small><i><%= movie.release_date %>　公開</i></small></span>
             <p class="card-text"><font size="1"><%= movie.description %></font></p>
             <%= link_to '削除', movie, method: :delete, class: 'btn btn-sm btn-danger' %>
           </div>

@@ -15,13 +15,20 @@ class MoviesController < ApplicationController
     else
       @selected_list = @user.lists.find(params[:movie][:list_id])
       @movie = @selected_list.movies.build(movie_params)
+
       if @movie.save
-        flash[:success] = "\"#{@movie.title}\"がリスト\"#{@selected_list.name}\"に追加されました"
-        redirect_to root_url
+        respond_to do |format|
+          @message = "『#{@movie.title}』がリスト『#{@selected_list.name}』に追加されました"
+          @type = "info"
+          format.js
+        end
       else
-        error_messages = @movie.errors.full_messages.join(', ')
-        flash[:danger] = error_messages
-        redirect_to root_url
+        respond_to do |format|
+          error_messages = @movie.errors.full_messages.join(', ')
+          @message = error_messages
+          @type = "warning"
+          format.js
+        end
       end
     end
   end
