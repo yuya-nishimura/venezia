@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   post '/' => 'home#search'
   # post 'home/index' => 'home#search'
 
-  resources :lists
-  resources :movies
+  resources :lists, only: [:create, :update, :show, :destory]
+  resources :movies, only: [:create, :destroy]
+  patch 'movies/:id' => 'movies#check'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,12 +1,5 @@
 class MoviesController < ApplicationController
-  def new
-  end
-
-  def show
-  end
-
-  def edit
-  end
+before_action :set_movie, only: [:check, :destroy]
 
   def create
     if @user.lists.blank?
@@ -18,7 +11,7 @@ class MoviesController < ApplicationController
 
       if @movie.save
         respond_to do |format|
-          @message = "『#{@movie.title}』がリスト『#{@selected_list.name}』に追加されました"
+          @message = "\"#{@movie.title}\"がリスト\"#{@selected_list.name}\"に追加されました"
           @type = "info"
           format.js
         end
@@ -33,19 +26,31 @@ class MoviesController < ApplicationController
     end
   end
 
-  def update
+  def check
+    @movie.toggle!(:check)
+    respond_to do |format|
+      @mid = @movie.id
+      format.js
+    end
   end
 
   def destroy
-    @movie = @user.movies.find(params[:id])
-    @selected_list = @movie.list
-
+    # メッセージでリスト名を出すため、削除する前に名前を抜く
+    @list_name = @movie.list.name
     @movie.destroy
-    flash[:success] = "\"#{@movie.title}\"がリスト\"#{@selected_list.name}\"から削除されました"
-    redirect_to @selected_list
+    respond_to do |format|
+      @message = "\"#{@movie.title}\"がリスト\"#{@list_name}\"から削除されました"
+      @type = "info"
+      @mid = @movie.id
+      format.js
+    end
   end
 
   private
+
+  def set_movie
+    @movie = @user.movies.find(params[:id])
+  end
 
   def movie_params
     params.require(:movie).permit(:title, :description, :release_date, :poster)

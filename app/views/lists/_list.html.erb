@@ -5,7 +5,7 @@
       <%= image_tag list.thumbnail, class: 'thumbnail mr-1' %>
         <div class="media-body">
           <h5 class="mt-0 mb-1"><%= link_to list.name, list %> (<%= list.movies.size %>)</h5>
-            <%= list.description %>
+          <small><%= list.description %></small>
         </div>
 
         <div class="dropdown">

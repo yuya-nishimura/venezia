@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_19_072629) do
+ActiveRecord::Schema.define(version: 2019_04_24_015206) do
 
   create_table "lists", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_04_19_072629) do
     t.text "description"
     t.date "release_date"
     t.string "poster"
+    t.boolean "check", default: false, null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -60,6 +60,18 @@ select {
   height: 2em;
 }
 
+// チェックボックス切り替え用のスタイル
+#check-true {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+#check-false {
+  color: #28a745;
+  border-color: #28a745;
+}
+
 .thumbnail {
   width: 64px;
   height: 64px;

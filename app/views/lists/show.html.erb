@@ -1,13 +1,15 @@
+<div class="register-flash"></div>
+
 <div class="container">
   <div class="row">
     <div class="col">
       <h2><%= @list.name %></h2>
-      <p><%= @list.description %></p>
+      <p class="h6 text-muted"><i><%= @list.description %></i></p>
     </div>
   </div>
 
   <% @movies.each do |movie| %>
-    <div class="card mb-3 w-100">
+    <div id="movie-<%= movie.id %>" class="card mb-3 w-100">
       <div class="row no-gutters">
         <div class="col-4">
           <%= image_tag movie.resized_poster(780), class: 'card-img' %>
@@ -17,7 +19,8 @@
             <h4 class="card-title"><%= movie.title %></h4>
             <span class="card-text"><small><i><%= movie.release_date %>　公開</i></small></span>
             <p class="card-text"><font size="1"><%= movie.description %></font></p>
-            <%= link_to '削除', movie, method: :delete, class: 'btn btn-sm btn-danger' %>
+            <%= link_to "\uf00c", movie, method: :patch, remote: true, id: "check-#{movie.check?}", class: 'fa btn w-50' %>
+            <%= link_to "\uf2ed", movie, method: :delete, remote: true, class: 'fa btn btn-danger' %>
           </div>
         </div>
       </div>
