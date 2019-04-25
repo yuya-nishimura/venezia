@@ -1,5 +1,7 @@
 <div class="register-flash"></div>
 
+<%= debug(@params) %>
+
 <div class="container">
   <div class="row">
     <div class="col">
@@ -10,19 +12,15 @@
 
   <div class="row my-1">
     <div class="col text-right">
-      <div class="dropdown">
+      <%= render "filter_#{@filter_mode}" %>
+      <div class="dropdown", style="display: inline-block">
         <button class="fa dropdown-toggle btn btn-primary" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= "\uf160 #{@sort_name}" %>
         </button>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right p-2" aria-labelledby="navbarDropdownMenuLink">
-          <%= link_to '登録順', list_path(@list, sort_by: :created_at), class: "dropdown-item" %>
-          <%= link_to 'タイトル順', list_path(@list, sort_by: :title), class: "dropdown-item" %>
-          <%= link_to '公開日順', list_path(@list, sort_by: :release_date), class: "dropdown-item" %>
-          <div class="dropdown-divider"></div>
-          <div class="dropdown-item">
-            <%= check_box_tag @list %>
-            <%= label_tag @list, "チェック済作品を除く", class: 'px-2 small' %>
-          </div>
+          <%= link_to '登録順', @params.merge(sort_by: :created_at), class: "dropdown-item" %>
+          <%= link_to 'タイトル順', @params.merge(sort_by: :title), class: "dropdown-item" %>
+          <%= link_to '公開日順', @params.merge(sort_by: :release_date), class: "dropdown-item" %>
         </div>
       </div>
     </div>

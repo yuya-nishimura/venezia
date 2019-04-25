@@ -1,18 +1,33 @@
 class ListsController < ApplicationController
 before_action :set_list, except: [:create]
+before_action :permit_query, only: [:show]
 
   def show
-    # 並び替え用のクエリがあるか確認
-    sort_key = params[:sort_by] ? params[:sort_by].to_sym : :created_at
-    # クエリはこちらで用意したもの以外は無効とする
-    sort_values = { created_at:   [:created_at, '登録順'],
-                    title:        [:title, 'タイトル順'],
-                    release_date: [:release_date, '公開日順'] }
-    raise unless sort_values.has_key?(sort_key)
+    # クエリに対応する値を格納したハッシュ
+    sort_values = { created_at: '登録順',
+                    title: 'タイトル順',
+                    release_date: '公開日順' }
+
+    # フィルター用のクエリの存在と"on"であることを確認し、あれば@moviesを絞り込む
+    if params[:filter].present? && params[:filter] == "on"
+      filtered_movies = @list.movies.where(check: false)
+      @filter_mode = "on"
+    else
+      # それ以外の時は絞り込みは行わない
+      filtered_movies = @list.movies
+      @filter_mode = "off"
+    end
+
+    # 並び替え用のクエリがあるか確認、無かったり無効なキーならデフォルトの登録順
+    if params[:sort_by].present? && sort_values.has_key?(params[:sort_by].to_sym)
+      sorter = params[:sort_by].to_sym
+    else
+      sorter = :created_at
+    end
 
     # ページネーション用にMovieオブジェクト群を取り出す
-    @movies = @list.movies.order(sort_values[sort_key][0]).page(params[:page]).per(15)
-    @sort_name = sort_values[sort_key][1]
+    @movies = filtered_movies.order(sorter).page(params[:page]).per(10)
+    @sort_name = sort_values[sorter]
   end
 
   def create
@@ -52,5 +67,9 @@ before_action :set_list, except: [:create]
 
   def list_params
     params.require(:list).permit(:name, :description)
+  end
+
+  def permit_query
+    @params = params.permit(:id, :sort_by, :filter).to_h
   end
 end

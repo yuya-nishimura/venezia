@@ -27,7 +27,6 @@ class User < ApplicationRecord
 
   # 被りのない映画一覧数を計算する
   def uniq_movies_size
-    titles = movies.map(&:title)
-    titles.uniq.size
+    movies.select(:title).distinct.count
   end
 end

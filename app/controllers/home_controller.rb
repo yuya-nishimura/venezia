@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   require 'open-uri'
 
   def index
-    @lists = @user.lists.page(params[:page]).per(6)
+    @lists = @user.lists.page(params[:page]).per(6) if user_signed_in?
   end
 
   def search
