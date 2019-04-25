@@ -8,6 +8,26 @@
     </div>
   </div>
 
+  <div class="row my-1">
+    <div class="col text-right">
+      <div class="dropdown">
+        <button class="fa dropdown-toggle btn btn-primary" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= "\uf160 #{@sort_name}" %>
+        </button>
+        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right p-2" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to '登録順', list_path(@list, sort_by: :created_at), class: "dropdown-item" %>
+          <%= link_to 'タイトル順', list_path(@list, sort_by: :title), class: "dropdown-item" %>
+          <%= link_to '公開日順', list_path(@list, sort_by: :release_date), class: "dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item">
+            <%= check_box_tag @list %>
+            <%= label_tag @list, "チェック済作品を除く", class: 'px-2 small' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <% @movies.each do |movie| %>
     <div id="movie-<%= movie.id %>" class="card mb-3 w-100">
       <div class="row no-gutters">
@@ -19,8 +39,10 @@
             <h4 class="card-title"><%= movie.title %></h4>
             <span class="card-text"><small><i><%= movie.release_date %>　公開</i></small></span>
             <p class="card-text"><font size="1"><%= movie.description %></font></p>
-            <%= link_to "\uf00c", movie, method: :patch, remote: true, id: "check-#{movie.check?}", class: 'fa btn w-50' %>
-            <%= link_to "\uf2ed", movie, method: :delete, remote: true, class: 'fa btn btn-danger' %>
+            <div class="text-right">
+              <%= link_to "\uf00c", movie, method: :patch, remote: true, id: "check-#{movie.check?}", class: 'fa btn w-50' %>
+              <%= link_to "\uf2ed", movie, method: :delete, remote: true, class: 'fa btn btn-danger' %>
+            </div>
           </div>
         </div>
       </div>

@@ -18,6 +18,8 @@
 
 body {
   padding-top: 7em;
+  // 英単語のみだと折り返しが起きないのを修正する
+  word-break: break-all;
   header {
     height: 5em;
   }
@@ -48,6 +50,15 @@ body {
 // ドロップダウンメニュー
 .dropdown-menu {
   width: 18em;
+}
+
+.dropdown-menu-sm {
+  width: 15.5em;
+}
+
+// チェックボックスをでかくする
+input[type=checkbox] {
+  transform: scale(1.3);
 }
 
 //アイコンのみで出来たボタンの下のマージン
