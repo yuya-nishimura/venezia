@@ -15,7 +15,7 @@
       <%= render "filter_#{@filter_mode}" %>
       <div class="dropdown", style="display: inline-block">
         <button class="fa dropdown-toggle btn btn-primary" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= "\uf160 #{@sort_name}" %>
+          <%= "#{@sort_name}" %>
         </button>
         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right p-2" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to '登録順', @params.merge(sort_by: :created_at), class: "dropdown-item" %>
@@ -23,6 +23,7 @@
           <%= link_to '公開日順', @params.merge(sort_by: :release_date), class: "dropdown-item" %>
         </div>
       </div>
+      <%= render "direction_#{@direction_name}" %>
     </div>
   </div>
 

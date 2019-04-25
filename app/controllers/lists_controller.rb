@@ -25,8 +25,15 @@ before_action :permit_query, only: [:show]
       sorter = :created_at
     end
 
+    # 並び順用のクエリがあるか確認、無かったらデフォルトの昇順
+    if params[:direction].present? && params[:direction] == "desc"
+      @direction_name = direction = :desc
+    else
+      @direction_name = direction = :asc
+    end
+
     # ページネーション用にMovieオブジェクト群を取り出す
-    @movies = filtered_movies.order(sorter).page(params[:page]).per(10)
+    @movies = filtered_movies.order( { sorter => direction } ).page(params[:page]).per(10)
     @sort_name = sort_values[sorter]
   end
 
@@ -70,6 +77,6 @@ before_action :permit_query, only: [:show]
   end
 
   def permit_query
-    @params = params.permit(:id, :sort_by, :filter).to_h
+    @params = params.permit(:id, :sort_by, :filter, :direction).to_h
   end
 end
