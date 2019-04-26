@@ -3,8 +3,8 @@ before_action :set_movie, only: [:check, :destroy]
 
   def create
     if @user.lists.blank?
-      flash[:warning] = 'リストを作成して下さい'
-      redirect_to root_url
+      @message = 'リストを作成して下さい'
+      @type = 'warning'
     else
       @selected_list = @user.lists.find(params[:movie][:list_id])
       @movie = @selected_list.movies.build(movie_params)
