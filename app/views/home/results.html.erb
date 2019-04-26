@@ -4,6 +4,13 @@
   <% if @results.blank? %>
     <h2>検索にヒットする作品はありませんでした。</h2>
   <% else %>
+  <div class="row mb-2">
+    <div class="col">
+      <h3>"<%= @keyword %>"</h3>
+      <span>の検索結果: <strong><%= @total_results %></strong>件</span>
+      <%= link_to '次の20件', root_path( search: @keyword, page: @page + 1 ), method: :post, class: "btn btn-sm btn-secondary #{ 'disabled' if @page == @total_pages }", style: 'float:right' %>
+    </div>
+  </div>
     <% @results.each do |movie| %>
       <% title = movie["title"] %>
       <% description = movie["overview"] %>
@@ -11,7 +18,7 @@
       <% poster = movie["poster_path"] %>
 
       <div class="card mb-3 w-100">
-        <div class="row no-gutters">
+        <div class="row">
           <div class="col-4">
             <%= image_tag "https://image.tmdb.org/t/p/w780#{poster}", class: 'card-img' %>
           </div>
@@ -36,11 +43,9 @@
   <% end %>
 
   <div class="row">
-    <div class="col-6">
-      <span><strong><%= @total_results %></strong>件中<strong><%= @results.size %></strong>件を表示中</span>
-    </div>
-    <div class="col-6 text-right">
-      さらに表示する
+    <div class="col">
+      <span>キーワード"<%= @keyword %>" :<strong><%= @total_results %></strong>件が見つかりました</span>
+      <%= link_to '次の20件', root_path( search: @keyword, page: @page + 1 ), method: :post, class: "btn btn-sm btn-secondary #{ 'disabled' if @page == @total_pages }", style: 'float:right' %>
     </div>
   </div>
 </div>
