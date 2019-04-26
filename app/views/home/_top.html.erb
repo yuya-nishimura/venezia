@@ -1,2 +1,51 @@
-<h1>ここは背徳の街</h1>
-  <p>※Twitterアカウントでユーザー登録して下さい<p>
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-4 text-center">
+          <i class="mb-2 fas fa-film top-icon"></i>
+          <p class="top-icon-description disabled">映画を検索</p>
+        </div>
+
+        <div class="col-4 text-center">
+          <i class="mb-2 fas fa-clipboard-list top-icon"></i>
+          <p class="top-icon-description disabled">リストに登録</p>
+        </div>
+
+        <div class="col-4 text-center">
+          <i class="mb-2 fas fa-tasks top-icon"></i>
+          <p class="top-icon-description disabled">作品ごとにチェック</p>
+        </div>
+
+
+
+      </div>
+      <hr class="my-4">
+      <div class="row mb-4">
+        <div class="col">
+          <p>Venezia Listsはシンプルな映画コレクションが作成できるアプリケーションです。</p>
+          <ul class="list-unstyled">
+            <li>
+              <small>
+                映画の検索は<%= link_to 'The Movie Database(TMDb)', 'https://www.themoviedb.org/' %>を参照しています。
+              </small>
+            </li>
+            <li>
+              <small>
+                アプリケーションに関する連絡･報告等は<%= link_to '@yusperekko', 'https://twitter.com/yusperekko' %>まで。
+              </small>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <%= link_to user_twitter_omniauth_authorize_path, class:'btn btn-primary' do %>
+            <i class="fab fa-twitter mr-1"></i>Twitterアカウントでユーザー登録 / ログイン
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

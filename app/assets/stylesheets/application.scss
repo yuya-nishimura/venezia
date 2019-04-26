@@ -28,6 +28,18 @@ body {
   }
 }
 
+// トップページのアイコン
+i.top-icon {
+  font-size: 5em;
+}
+
+p.top-icon-description {
+  font-size: small;
+  font-weight: bold;
+  letter-spacing: -1px;
+  font-style: italic;
+}
+
 // ボタンの色オーバーライド
 $primary: rgb(99, 39, 240);
 $secondary: rgb(102, 55, 129);
