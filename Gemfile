@@ -48,6 +48,10 @@ gem 'dotenv-rails'
 # ページネーション
 gem 'kaminari'
 
+# エラーメッセージ等の日本語化
+gem 'rails-i18n'
+
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   # 本番ではpgを使うのでこっちに移動

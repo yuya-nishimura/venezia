@@ -6,8 +6,12 @@
   <% else %>
   <div class="row mb-2">
     <div class="col">
-      <h3>"<%= @keyword %>"</h3>
-      <span>の検索結果: <strong><%= @total_results %></strong>件</span>
+      <strong style="font-size: 2em">"<%= @keyword %>"</strong><span>の検索結果: <strong><%= @total_results %></strong>件</span>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col">
+      <%= link_to '前の20件', root_path( search: @keyword, page: @page - 1 ), method: :post, class: "btn btn-sm btn-secondary #{ 'disabled' if @page == 1 }", style: 'float:left' %>
       <%= link_to '次の20件', root_path( search: @keyword, page: @page + 1 ), method: :post, class: "btn btn-sm btn-secondary #{ 'disabled' if @page == @total_pages }", style: 'float:right' %>
     </div>
   </div>
@@ -42,9 +46,14 @@
     <% end %>
   <% end %>
 
-  <div class="row">
+  <div class="row mb-2">
     <div class="col">
       <span>キーワード"<%= @keyword %>" :<strong><%= @total_results %></strong>件が見つかりました</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= link_to '前の20件', root_path( search: @keyword, page: @page - 1 ), method: :post, class: "btn btn-sm btn-secondary #{ 'disabled' if @page == 1 }", style: 'float:left' %>
       <%= link_to '次の20件', root_path( search: @keyword, page: @page + 1 ), method: :post, class: "btn btn-sm btn-secondary #{ 'disabled' if @page == @total_pages }", style: 'float:right' %>
     </div>
   </div>

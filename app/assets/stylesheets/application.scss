@@ -87,10 +87,12 @@ $danger: rgb(209, 27, 154);
 }
 
 #logo {
-  font-size: x-large;
-  font-weight: 600;
+  font-size: 2em;
+  font-weight: bold;
+  letter-spacing: -1px;
   text-decoration: none;
-  color: ghostwhite;
+  float: left;
+  color: rgba(232, 228, 236, 0.884);
 }
 
 // フラッシュメッセージを固定
@@ -98,6 +100,19 @@ $danger: rgb(209, 27, 154);
   position: fixed;
   z-index: 1;
   width: 100%;
+}
+
+// deviseのフラッシュメッセージに色を付ける
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-alert {
+  color: #57154e;
+  background-color: #ecd4ed;
+  border-color: #e6c3e1;
 }
 
 // ページネーションを少し下げる
