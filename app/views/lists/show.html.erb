@@ -35,7 +35,7 @@
           <div class="card-body">
             <h4 class="card-title"><%= movie.title %></h4>
             <span class="card-text"><small><%= movie.release_date %>　公開</small></span>
-            <p class="card-text" style="color: gray"><i><%= movie.description %></i></p>
+            <p class="card-text"><em><%= movie.description %></em></p>
             <div class="text-right" style="<%= @delete_btn %>">
               <%= link_to "\uf00c", movie, method: :patch, remote: true, id: "check-#{movie.check?}", class: 'fa btn w-50' %>
               <%= link_to "\uf2ed", movie, method: :delete, remote: true, class: 'fa btn btn-danger' %>
