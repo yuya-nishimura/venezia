@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
-  # 映画はリストに属する
+  # 映画はリスト、ユーザーに属する
   belongs_to :list
+  has_one :user, through: :list
   validates :title, presence: true, uniqueness: { scope: :list_id }
 
   def resized_poster(size)

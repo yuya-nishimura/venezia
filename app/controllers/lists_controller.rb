@@ -1,6 +1,8 @@
 class ListsController < ApplicationController
 before_action :set_list, except: [:create]
 before_action :permit_query, only: [:show]
+before_action :movie_owner?, only: [:show]
+before_action :list_owner?, only: [:update, :destroy]
 
   def show
     # クエリに対応する値を格納したハッシュ
@@ -78,5 +80,20 @@ before_action :permit_query, only: [:show]
 
   def permit_query
     @params = params.permit(:id, :sort_by, :filter, :direction).to_h
+  end
+
+  # リストの所持者でないと更新削除ができない(閲覧は可能)
+  def list_owner?
+    unless @list.user == current_user
+      flash[:danger] = "所有者のみ可能です"
+      redirect_to root_url
+    end
+  end
+
+  # 映画の所有者でないと更新削除ボタンが出ない
+  def movie_owner?
+    unless @list.user == current_user
+      @delete_btn = "display: none"
+    end
   end
 end
